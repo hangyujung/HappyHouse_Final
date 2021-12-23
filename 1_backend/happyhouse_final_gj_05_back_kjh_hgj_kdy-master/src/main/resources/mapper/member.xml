@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouse.model.mapper.MemberMapper">
+
+	<insert id="registerMember" parameterType="MemberDto">
+		insert into user (ID, password, name, address, phone)
+		values (#{userId}, #{password}, #{name}, #{address}, #{phone})
+	</insert>
+
+	<select id="login" parameterType="Map" resultType="MemberDto">
+		select userno,ID as "userId",password,name,address,phone
+		from user
+		where ID = #{userId} and password = #{password}
+	</select>
+	
+	<resultMap type="MemberDto" id="userinfo">
+		<result column="ID" property="userId"/>
+		<result column="password" property="password"/>
+		<result column="name" property="name"/>
+		<result column="address" property="address"/>
+		<result column="phone" property="phone"/>
+	</resultMap>
+
+	<select id="getMember" parameterType="String" resultMap="userinfo">
+		select *
+		from user
+		where ID = #{userid}
+	</select>
+	
+	<select id="getMemberInfo" parameterType="map" resultType="MemberDto">
+		select *
+		from user
+		where #{selectOption} = #{str}
+	</select>
+	
+	<update id="updateMember" parameterType="MemberDto">
+		update user 
+		set
+		password = #{password},
+		address = #{address},
+		name = #{name},
+		phone = #{phone}
+		where ID = #{userId}
+	</update>
+	
+	<delete id="deleteMember" parameterType="String">
+		delete from user
+		where ID = #{userId}
+	</delete>
+	
+	<select id="getMemberList" resultMap="userinfo">
+		select ID,password,name,address,phone
+		from user
+		order by userno
+	</select>
+
+</mapper>

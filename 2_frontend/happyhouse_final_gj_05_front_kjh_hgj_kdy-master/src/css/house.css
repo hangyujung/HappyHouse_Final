@@ -1,0 +1,43 @@
+#name {
+  display: inline-block;
+}
+
+#condition {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#condition select {
+  height: 35px;
+  width: 150px;
+}
+
+button {
+  height: 35px;
+  margin-left: 4px;
+}
+
+label {
+  font-size: 18px;
+  line-height: 1.8em;
+  margin-left: 10px;
+  margin-right: 5px;
+}
+
+.tab {
+  text-align: center;
+}
+
+.cart {
+  text-align: center;
+  cursor: pointer;
+}
+
+.cart:hover {
+  color: orange;
+}
+
+.fa-times {
+  color: #787878;
+}
